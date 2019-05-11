@@ -93,6 +93,7 @@
       </ion-grid>
   </ion-content>
 -->
+
 <ion-content class="carhh" >
  <ion-grid>  
   <ion-row *ngFor="let usuario of usuarios" >
@@ -114,4 +115,70 @@
      </ion-col>  
    </ion-row> 
   </ion-grid>
+
+
+<ion-item-options>
+  <ion-item-option (click)="remove(item)" color ="secondary">
+      <ion-icon name="checkmark" slot="end"></ion-icon>
+  </ion-item-option>
+</ion-item-options>   
+
+ 
+ <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/details" routerDirection="forward">
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+ </ion-fab>
+ <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="Onlogout()">
+      <ion-icon name="lock"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+
+<!-- Con flexbox
+<ul class="parent" *ngFor="let usuario of usuarios" >
+  <li>
+    <ion-card  button [routerLink] = "['/details', usuario.id]">
+      <ion-card-content>    
+         <ion-img src="{{usuario.urlFoto}}" > </ion-img>    
+      </ion-card-content>
+      
+      <ion-card-header>
+         <ion-card-title>
+             @ {{usuario.name}}
+         </ion-card-title>
+         <ion-card-subtitle>
+           {{usuario.comentario}}  
+         </ion-card-subtitle>          
+      </ion-card-header>
+   </ion-card>
+  </li> 
+</ul>
+</div>
+-->
+
+
+
+<!-- Con flexbox   Funciona muy bien---------------------------
+<ul class="parent"  >
+  <li>
+    <img class="icon" src="../assets/logo.png"> <br/>
+    Columna de prueba 1 Columna de prueba 1 </li>  
+  <li>
+    <img class="icon" src="../assets/logo.png"> <br/>
+    Columna de prueba 2 Columna de prueba 2 </li> 
+  <li>
+    <img class="icon" src="../assets/logo.png"> <br/>
+    Columna de prueba 3 Columna de prueba 3 </li> 
+  <li>
+    <img class="icon" src="../assets/logo.png"> <br/>
+    Columna de prueba 4 Columna de prueba 4 </li>  
+  <li>
+    <img class="icon" src="../assets/logo.png"> <br/>
+    Columna de prueba 5 Columna de prueba 5</li> 
+  <li>
+    <img class="icon" src="../assets/logo.png"> <br/>
+    Columna de prueba 6 Columna de prueba 6</li> 
+</ul>
+-->

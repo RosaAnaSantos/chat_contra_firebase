@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../modelos/task.interface';
 import {ChatService} from '../services/chat.service';
-
+import {AuthService} from '../servicios/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -9,7 +9,7 @@ import {ChatService} from '../services/chat.service';
 })
 export class HomePage implements OnInit{
   usuarios:User[];
-  constructor(private chatService:ChatService){
+  constructor(private chatService:ChatService, public authservice: AuthService){
 
   }
 
@@ -19,5 +19,9 @@ export class HomePage implements OnInit{
              this.usuarios=res
   );
 
+  }
+
+  Onlogout(){
+   this.authservice.logout();
   }
 }

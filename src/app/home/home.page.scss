@@ -1,4 +1,20 @@
-.carh{
+.car{
     padding: 6%; 
     height: 800px;
+}
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+}
+.parent li {
+    flex: 1 1 1 320px;
+    max-width: 500px;
+    margin: 8px;
+}
+li{
+    background-color: darkgray;
+    list-style:none
 }
