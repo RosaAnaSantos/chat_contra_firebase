@@ -24,4 +24,7 @@ export class HomePage implements OnInit{
   Onlogout(){
    this.authservice.logout();
   }
+  darNombre(){
+    return name;
+  }
 }

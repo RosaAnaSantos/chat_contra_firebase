@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
       return this.authService.isAutenticated();
   }
  
-  onSubmitLogin(){
+  enviarLogin(){
     console.log('Estás en la función');
     this.authService.login(this.email, this.password);
     setTimeout(() => {

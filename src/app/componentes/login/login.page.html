@@ -1,12 +1,12 @@
 
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="secondary">
     <ion-title text-center  >Iniciar sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-  <img class="icon" src="../assets/logo.png">
+  <img class="icon" src="../assets/chat.png">
   <ion-item>
     <ion-label position="floating" >Correo electrónico</ion-label>
     <ion-input type="text" [(ngModel)]="email" name="email"  (click)='onClickFunction($event)'></ion-input>
@@ -15,11 +15,14 @@
     <ion-label position="floating" >Contraseña</ion-label>
     <ion-input type="password" [(ngModel)]="password" name="password" (click)='onClickFunction($event)'></ion-input>
   </ion-item>
-  <ion-button (click)="onSubmitLogin()" expand="block">Entrar</ion-button>  
-  <p *ngIf="mensaje" >
+  <ion-button color="secondary" (click)="enviarLogin()" expand="block">Entrar al chat</ion-button>  
+  <p class="aviso" *ngIf="mensaje" >
     El usuario o contraseña no es correcto
   </p>
+  <p class="registro"  routerLink="/registro">
+   Crear cuenta
+  </p>
   
- <h3>Email:micole@gmail.com </h3> 
- <h3>Password: micole </h3>
+ <h3>Email:micole@gmail.com, juanillo@gmail.com, alberto@gmail.com </h3> 
+ <h3>Password: micole, juanillo,  alberto </h3>
 </ion-content>
