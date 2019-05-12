@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="secondary">
     <ion-title>
       El chat de los amigos felices
     </ion-title>
@@ -124,13 +124,13 @@
 </ion-item-options>   
 
  
- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/details" routerDirection="forward">
-        <ion-icon name="add"></ion-icon>
+ <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button  color="secondary" routerLink="/details" routerDirection="forward">
+        <ion-icon  name="add"></ion-icon>
     </ion-fab-button>
  </ion-fab>
  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button (click)="Onlogout()">
+    <ion-fab-button color="secondary"  (click)="Onlogout()">
       <ion-icon name="lock"></ion-icon>
     </ion-fab-button>
   </ion-fab>

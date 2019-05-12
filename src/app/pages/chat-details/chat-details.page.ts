@@ -3,6 +3,10 @@ import {User} from '../../modelos/task.interface';
 import {ChatService} from '../../services/chat.service';
 import {ActivatedRoute} from '@angular/router';
 import {NavController, LoadingController} from '@ionic/angular';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
+import {Observable} from 'rxjs/internal/Observable';
+
 @Component({
   selector: 'app-chat-details',
   templateUrl: './chat-details.page.html',
@@ -14,16 +18,35 @@ export class ChatDetailsPage implements OnInit {
   comentario:'',
   urlFoto:''
  };
- usuarioId=null;
-  constructor( private route:ActivatedRoute, private nav:NavController,
-               private chatService:ChatService, private loadingController:LoadingController) { 
+ oculto:boolean=false;
 
+ usuarioId=null;
+  constructor(private storage:AngularFireStorage, private route:ActivatedRoute, private nav:NavController,
+               private chatService:ChatService, private loadingController:LoadingController) { 
   }
+
+  uploadPercent: Observable<number>;
+  urlImage: Observable<string>;
+
+
+
+onUpload(e){
+//console.log('subir', e.target.files[0]);
+const id=Math.random().toString(36).substring(2);
+const file =e.target.files[0];
+const filePath = 'uploads/profile_${id}';
+const ref= this.storage.ref(filePath);
+const task =this.storage.upload(filePath, file);
+this.uploadPercent = task.percentageChanges();
+task.snapshotChanges().pipe(finalize(() =>this.urlImage = ref.getDownloadURL())).subscribe();
+}
 
   ngOnInit() {
     this.usuarioId = this.route.snapshot.params['id'];
     if(this.usuarioId){
       this.loadUsuario();
+    }else{
+     this.oculto=true;
     }
   }
   async loadUsuario(){
