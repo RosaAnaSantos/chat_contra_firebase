@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
+import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +21,15 @@ export class AuthService {
     this.AFauth.auth.signOut().then( () => {
       this.router.navigate(['/login']);
     })
+  }
+
+  isAutenticated(){
+    const user= firebase.auth().currentUser;
+    if(user){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
 
