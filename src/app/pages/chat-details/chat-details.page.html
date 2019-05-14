@@ -7,8 +7,10 @@
 </ion-header>
 
 <ion-content padding>
+    <img class="icon" src="../assets/polchat.png">
+    <h4 class="actualiza"  [hidden]="mostrar" >Actualizar o eliminar post</h4>
  <ion-list>
-     <ion-item *ngIf="usuario">
+     <ion-item position="floating" *ngIf="usuario">
      <ion-input required type="text" placeholder="Nombre" [(ngModel)]="usuario.name"  ></ion-input>    
      </ion-item>
      
@@ -16,11 +18,11 @@
       <ion-input  required type="file" accept=".png, jpg"   (change)="onUpload($event)"  [(ngModel)]="usuario.urlFoto"  ></ion-input>    
       </ion-item>
 
-      <ion-item *ngIf="usuario">
-          <ion-input required type="text" placeholder="Tu archivo"  [(ngModel)]="usuario.urlFoto" [value]="urlImage | async"  > </ion-input>    
+      <ion-item position="floating" *ngIf="usuario">
+          <ion-input required type="text" placeholder="Tu archivo"  [(ngModel)]="usuario.urlFoto" [value]="urlImage | async"> </ion-input>    
       </ion-item>
 
-      <ion-item *ngIf="usuario">
+      <ion-item position="floating" *ngIf="usuario">
           <ion-input required type="text" placeholder="Tu comentario" [(ngModel)]="usuario.comentario"  > </ion-input>    
       </ion-item>
      

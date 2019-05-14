@@ -23,6 +23,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
             AppRoutingModule,
             AngularFireStorageModule,
             AngularFireAuthModule,
+           
           ],
   providers: [
     StatusBar,

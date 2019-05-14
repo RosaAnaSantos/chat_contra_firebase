@@ -7,7 +7,9 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class AuthService {
-nombre:string;
+  nombre:string;
+  email;
+  uid;
 
   constructor(private AFauth : AngularFireAuth, private router: Router, private db: AngularFirestore) { }
 
@@ -15,6 +17,14 @@ nombre:string;
   login(email:string, password:string){
     this.AFauth.auth.signInWithEmailAndPassword(email, password).then(res =>{
       console.log('Estás logeado:' + res)
+      console.log(res);
+      console.log(res.additionalUserInfo);
+      console.log(res.credential);
+      console.log(res.user)
+      
+      this.uid = res.user.uid;
+      this.email = res.user.email;
+
       this.router.navigate(['/home']);
     }).catch(err => console.log('error Esto no va bien no estás logeado???:' + err));
   
@@ -52,7 +62,20 @@ nombre:string;
     
 
   }
+  
 
+  getName() {
+/*
+    var sfRef = db.collection('cities').doc('SF');
+    sfRef.getCollections().then(collections => {
+       collections.forEach(collection => {
+      console.log('Found subcollection with id:', collection.id);
+    });
+    });
+
+    return this.db.collection('users').doc(this.uid).get();
+    */
+  }
 }
 
 

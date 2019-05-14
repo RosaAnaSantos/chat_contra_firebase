@@ -19,7 +19,7 @@ export class ChatDetailsPage implements OnInit {
   urlFoto:''
  };
  oculto:boolean=false;
-
+ mostrar:boolean=true;
  usuarioId=null;
   constructor(private storage:AngularFireStorage, private route:ActivatedRoute, private nav:NavController,
                private chatService:ChatService, private loadingController:LoadingController) { 
@@ -34,7 +34,7 @@ onUpload(e){
 //console.log('subir', e.target.files[0]);
 const id=Math.random().toString(36).substring(2);
 const file =e.target.files[0];
-const filePath = 'uploads/profile_${id}';
+const filePath = 'uploads/profile_' + id;
 const ref= this.storage.ref(filePath);
 const task =this.storage.upload(filePath, file);
 this.uploadPercent = task.percentageChanges();
@@ -45,6 +45,7 @@ task.snapshotChanges().pipe(finalize(() =>this.urlImage = ref.getDownloadURL()))
     this.usuarioId = this.route.snapshot.params['id'];
     if(this.usuarioId){
       this.loadUsuario();
+      this.mostrar=false;
     }else{
      this.oculto=true;
     }
