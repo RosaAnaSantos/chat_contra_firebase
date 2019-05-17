@@ -96,19 +96,19 @@
 
 <ion-content class="carhh" >
  <ion-grid>  
-  <ion-row *ngFor="let usuario of usuarios" >
+  <ion-row *ngFor="let post of posts" >
     <ion-col size="12" size-sm > 
-        <ion-card  button [routerLink] = "['/details', usuario.id]">
+        <ion-card  button [routerLink] = "['/details', post.id]">
                 <ion-card-content>    
-                   <ion-img src="{{usuario.urlFoto}}" > </ion-img>    
+                   <ion-img src="{{post.urlFoto}}" > </ion-img>    
                 </ion-card-content>
                 
                 <ion-card-header>
                    <ion-card-title>
-                       @ {{usuario.name}}
+                       @ {{post.name}}
                    </ion-card-title>
                    <ion-card-subtitle>
-                     {{usuario.comentario}}  
+                     {{post.comentario}}  
                    </ion-card-subtitle>          
                 </ion-card-header>
         </ion-card>

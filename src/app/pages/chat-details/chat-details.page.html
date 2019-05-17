@@ -10,27 +10,27 @@
     <img class="icon" src="../assets/polchat.png">
     <h4 class="actualiza"  [hidden]="mostrar" >Actualizar o eliminar post</h4>
  <ion-list>
-     <ion-item position="floating" *ngIf="usuario">
-     <ion-input required type="text" placeholder="Nombre" [(ngModel)]="usuario.name"  ></ion-input>    
+     <ion-item position="floating" *ngIf="post">
+     <ion-input required type="text" placeholder="Nombre" [(ngModel)]="post.name"  ></ion-input>    
      </ion-item>
      
-      <ion-item *ngIf="usuario">
-      <ion-input  required type="file" accept=".png, jpg"   (change)="onUpload($event)"  [(ngModel)]="usuario.urlFoto"  ></ion-input>    
+      <ion-item *ngIf="post">
+      <ion-input  required type="file" accept=".png, jpg"   (change)="onUpload($event)"  [(ngModel)]="post.urlFoto"  ></ion-input>    
       </ion-item>
 
-      <ion-item position="floating" *ngIf="usuario">
-          <ion-input required type="text" placeholder="Tu archivo"  [(ngModel)]="usuario.urlFoto" [value]="urlImage | async"> </ion-input>    
+      <ion-item position="floating" *ngIf="post">
+          <ion-input required type="text" placeholder="Tu archivo"  [(ngModel)]="post.urlFoto" [value]="urlImage | async"> </ion-input>    
       </ion-item>
 
-      <ion-item position="floating" *ngIf="usuario">
-          <ion-input required type="text" placeholder="Tu comentario" [(ngModel)]="usuario.comentario"  > </ion-input>    
+      <ion-item position="floating" *ngIf="post">
+          <ion-input required type="text" placeholder="Tu comentario" [(ngModel)]="post.comentario"  > </ion-input>    
       </ion-item>
      
  </ion-list>
- <ion-button expand="full" color="secondary" (click)="guardarUsuario()">GUARDAR</ion-button>
+ <ion-button expand="full" color="secondary" (click)="guardarPost()">GUARDAR</ion-button>
 
  <ion-fab vertical="bottom" [hidden]="oculto" horizontal="end" slot="fixed"color="danger" >
-    <ion-fab-button color="danger" routerLink="/" routerDirection="forward" (click)="eliminarUsuario(usuarioId)">
+    <ion-fab-button color="danger" routerLink="/" routerDirection="forward" (click)="eliminarPost(postId)">
       <ion-icon name="trash"></ion-icon>
     </ion-fab-button>
  </ion-fab>

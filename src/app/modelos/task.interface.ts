@@ -1,4 +1,4 @@
-export interface User{
+export interface Post{
     id?:string;
     user?:string;
     name:string;

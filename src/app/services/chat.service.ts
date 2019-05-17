@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {User} from '../modelos/task.interface';
+import {Post} from '../modelos/task.interface';
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  private usersCollection: AngularFirestoreCollection<User>;
-  private users: Observable<User[]>;
+  private usersCollection: AngularFirestoreCollection<Post>;
+  private posts: Observable<Post[]>;
   constructor(db: AngularFirestore) {
-    this.usersCollection = db.collection<User>('todos');
-    this.users = this.usersCollection.snapshotChanges().pipe(map(
+    this.usersCollection = db.collection<Post>('todos');
+    this.posts = this.usersCollection.snapshotChanges().pipe(map(
       actions => {
         return actions.map(a =>{
           const data = a.payload.doc.data();
@@ -22,24 +22,24 @@ export class ChatService {
     ));
    }
 
-   getUsers(){
-     return this.users;
+   getPosts(){
+     return this.posts;
    }
 
-   getUser(id: string){
-     return this.usersCollection.doc<User> (id).valueChanges();
+   getPost(id: string){
+     return this.usersCollection.doc<Post> (id).valueChanges();
    }
 
-   updateUser(usuario:User, id:string){
-     return this.usersCollection.doc(id).update(usuario);
+   updatePost(post:Post, id:string){
+     return this.usersCollection.doc(id).update(post);
    }
 
-   addUser(usuario: User){
-     return this.usersCollection.add(usuario);
+   addPost(post: Post){
+     return this.usersCollection.add(post);
 
    }
 
-   removeUser(id:string){
+   removePost(id:string){
      return this.usersCollection.doc(id).delete();
    }
 }

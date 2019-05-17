@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../modelos/task.interface';
+import {Post} from '../modelos/task.interface';
 import {ChatService} from '../services/chat.service';
-import {AuthService} from '../servicios/auth.service';
+import {AuthService} from '../services_registro/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  usuarios:User[];
+  posts:Post[];
   constructor(private chatService:ChatService, public authservice: AuthService){
 
   }
 
   ngOnInit(){
-  this.chatService.getUsers().subscribe(res => 
-   // console.log('Usuarios', res);
-             this.usuarios=res
+  this.chatService.getPosts().subscribe(res => 
+   // console.log('Posts', res);
+             this.posts=res
   );
 
   }

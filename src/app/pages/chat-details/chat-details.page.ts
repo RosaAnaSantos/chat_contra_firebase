@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../modelos/task.interface';
+import {Post} from '../../modelos/task.interface';
 import {ChatService} from '../../services/chat.service';
 import {ActivatedRoute} from '@angular/router';
 import {NavController, LoadingController} from '@ionic/angular';
@@ -13,14 +13,14 @@ import {Observable} from 'rxjs/internal/Observable';
   styleUrls: ['./chat-details.page.scss'],
 })
 export class ChatDetailsPage implements OnInit {
- usuario:User={
+ post:Post={
   name:'',
   comentario:'',
   urlFoto:''
  };
  oculto:boolean=false;
  mostrar:boolean=true;
- usuarioId=null;
+ postId=null;
   constructor(private storage:AngularFireStorage, private route:ActivatedRoute, private nav:NavController,
                private chatService:ChatService, private loadingController:LoadingController) { 
   }
@@ -42,8 +42,8 @@ task.snapshotChanges().pipe(finalize(() =>this.urlImage = ref.getDownloadURL()))
 }
 
   ngOnInit() {
-    this.usuarioId = this.route.snapshot.params['id'];
-    if(this.usuarioId){
+    this.postId = this.route.snapshot.params['id'];
+    if(this.postId){
       this.loadUsuario();
       this.mostrar=false;
     }else{
@@ -55,30 +55,30 @@ task.snapshotChanges().pipe(finalize(() =>this.urlImage = ref.getDownloadURL()))
       message: 'Loading.....'
     });
 
-    this.chatService.getUser(this.usuarioId).subscribe(res => {
+    this.chatService.getPost(this.postId).subscribe(res => {
       loading.dismiss();
-      this.usuario = res;
+      this.post = res;
     })
  }
 
- async guardarUsuario(){
+ async guardarPost(){
   const loading=await this.loadingController.create({
     message: 'Saving.....'
   });
   await loading.present();
-  if(this.usuarioId){
-     this.chatService.updateUser(this.usuario, this.usuarioId).then(() =>{
+  if(this.postId){
+     this.chatService.updatePost(this.post, this.postId).then(() =>{
        loading.dismiss();
        this.nav.navigateForward('/');
      });
   }else{
-    this.chatService.addUser(this.usuario).then(() =>{
+    this.chatService.addPost(this.post).then(() =>{
       loading.dismiss();
       this.nav.navigateForward('/');
     });
   }
  }
- eliminarUsuario(idUsuario:string){
-this.chatService.removeUser(idUsuario);
+ eliminarPost(idPost:string){
+this.chatService.removePost(idPost);
  }
 }
